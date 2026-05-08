@@ -5,6 +5,7 @@ import time
 import numpy as np
 import statistics
 import optuna
+import pandas as pd
 
 
 def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe, ruidoStrD2, ruidoStrD1, ruidoSTN, ruidoTonos, ruidoObjetivos, tauObjStrD2, tauObjStrD1, tauTonesStrD2, tauTonesStrD1, tauTonesSTN, tauStrD2GPe, tauGPeSNr, tauStrD1SNr, tauSTNSNr, tauSNrVA, tauVAPM):
@@ -1887,7 +1888,7 @@ if __name__ == "__main__":
 
     study = optuna.create_study(
         direction="maximize",
-        storage="sqlite:///tesis_optuna.db",
+        storage="sqlite:///tesis.db",
         study_name="tesis",
         load_if_exists=True
     )
@@ -1896,3 +1897,9 @@ if __name__ == "__main__":
 
     print(study.best_value)
     print(study.best_params)
+
+    df = study.trials_dataframe()
+    df.to_csv("resultados_optuna.csv", index=False)
+
+    df_validos = df[df["value"] > -10000]
+    df_validos.to_csv("resultados_validos.csv", index=False)
