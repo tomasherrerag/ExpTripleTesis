@@ -1572,10 +1572,19 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                     #return -10000
                 
             if trial == 400:
+                promedioTiemposNoRev = (
+                    statistics.mean(tiemposNoRev)
+                    if tiemposNoRev
+                    else None
+                )
+
+                promedioTiemposRev = (
+                    statistics.mean(tiemposRev)
+                    if tiemposRev
+                    else None
+                )
                 #if contadorCoincidencia1Rev > 12:
                     #return -10000
-                promedioTiemposNoRev = statistics.mean(tiemposNoRev)
-                promedioTiemposRev = statistics.mean(tiemposRev)
                 #if promedioTiemposNoRev > promedioTiemposRev:
                  #   return -10000
 
@@ -1653,7 +1662,7 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                 #if contadorSkipMalo2 > 5:
                     #return -10000
                 
-            if trial == 500:
+            #if trial == 500:
                 #if contadorCoincidencia2 > 64 or contadorCoincidencia2 < 44:
                  #   return -10000
                 
@@ -1794,7 +1803,7 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
 def calculoScore(metrics):
 
     SCORE_FAIL = -10000
-    score = 2000
+    score = 10000
 
     # ======================
     # EXPERIMENTO 1 - NO REV
@@ -1824,8 +1833,11 @@ def calculoScore(metrics):
 
 
     #comparacion tiempos
-
-    if t1r < t1n:
+    if (
+        t1r is None
+        or t1n is None
+        or t1r < t1n
+    ):
         score -= 500
 
     # ======================
@@ -1901,7 +1913,7 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=10)
+    study.optimize(objective, n_trials=100)
 
     print(study.best_value)
     print(study.best_params)
