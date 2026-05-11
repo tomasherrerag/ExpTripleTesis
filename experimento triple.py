@@ -1466,19 +1466,19 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                 else:
                     listaCoincidencia1noRev.append("no coincide")
                     contadorNoCoincide1NoRev += 1
-                    if contadorNoCoincide1NoRev > 10:
-                        return -10000
+                    #if contadorNoCoincide1NoRev > 10:
+                        #return -10000
 
             else:
                 listaCoincidencia1noRev.append("skip malo")
                 contadorSkipMalo1NoRev += 1
                 listaTiemposGlobal1norev.append(tiempoTrial)
                 action = 2
-                if contadorSkipMalo1NoRev > 5:
-                    return -10000
+                #if contadorSkipMalo1NoRev > 5:
+                    #return -10000
                 
-            if trial == 300 and contadorCoincidencia1NoRev < 88:
-                return -10000
+            #if trial == 300 and contadorCoincidencia1NoRev < 88:
+                #return -10000
 
         elif (trial<401):       # Experimento 1  - GRUPO REVERSIBLE     
 
@@ -1558,8 +1558,8 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                 if(action == tonoActual):
                     listaCoincidencia1Rev.append("coincide")
                     contadorCoincidencia1Rev += 1
-                    if contadorCoincidencia1Rev > 10:
-                        return -10000
+                    #if contadorCoincidencia1Rev > 10:
+                        #return -10000
                 else:
                     listaCoincidencia1Rev.append("no coincide")
 
@@ -1568,16 +1568,16 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                 contadorSkipMalo1Rev += 1
                 listaTiemposGlobal1Rev.append(tiempoTrial)
                 action = 2
-                if contadorSkipMalo1Rev > 5:
-                    return -10000
+                #if contadorSkipMalo1Rev > 5:
+                    #return -10000
                 
             if trial == 400:
-                if contadorCoincidencia1Rev > 12:
-                    return -10000
+                #if contadorCoincidencia1Rev > 12:
+                    #return -10000
                 promedioTiemposNoRev = statistics.mean(tiemposNoRev)
                 promedioTiemposRev = statistics.mean(tiemposRev)
-                if promedioTiemposNoRev > promedioTiemposRev:
-                    return -10000
+                #if promedioTiemposNoRev > promedioTiemposRev:
+                 #   return -10000
 
             pass
 
@@ -1650,12 +1650,12 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                 listaCoincidencia2.append("skip malo")
                 contadorSkipMalo2 += 1
                 listaTiemposGlobal2.append(tiempoTrial)
-                if contadorSkipMalo2 > 5:
-                    return -10000
+                #if contadorSkipMalo2 > 5:
+                    #return -10000
                 
             if trial == 500:
-                if contadorCoincidencia2 > 64 or contadorCoincidencia2 < 44:
-                    return -10000
+                #if contadorCoincidencia2 > 64 or contadorCoincidencia2 < 44:
+                 #   return -10000
                 
 
         else:
@@ -1740,15 +1740,15 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                     else:
                         listaCoincidencia3.append("skip malo")
                         contadorSkipMalo3 += 1
-                        if contadorSkipMalo3 > 10:
-                            return -10000
+                        #if contadorSkipMalo3 > 10:
+                        #    return -10000
 
                 else:           #si responde
                     if(tonoActual == 2): #se revisa si respondió en lo que debería haber sido un skip
                         listaCoincidencia3.append("skip respondido")
                         contadorSkipRespondido3 += 1
-                        if contadorSkipRespondido3 > 10:
-                            return -10000
+                        #if contadorSkipRespondido3 > 10:
+                        #    return -10000
 
                     elif(action == tonoActual):   #se revisa si la respuesta corresponde con el tono grave / agudo
                         listaCoincidencia3.append("coincide")
@@ -1756,11 +1756,11 @@ def simular(tiempoExp, umbralActividad, ruidoPM, ruidoTalamo, ruidoSNr, ruidoGPe
                     else:
                         listaCoincidencia3.append("no coincide")
 
-                if trial == 700:
-                    if contadorCoincidencia3 > 70 or contadorCoincidencia3 < 50:
-                        return -10000
-                    if contadorCoincidencia3 < contadorCoincidencia2:
-                        return -10000
+                #if trial == 700:
+                    #if contadorCoincidencia3 > 70 or contadorCoincidencia3 < 50:
+                    #    return -10000
+                    #if contadorCoincidencia3 < contadorCoincidencia2:
+                    #    return -10000
                 
                 
             pass
@@ -1802,6 +1802,7 @@ def calculoScore(metrics):
 
     m1 = metrics["exp1"]["noRev"]["coincidenciaNoRev"]
     s1 = metrics["exp1"]["noRev"]["skipsNoRev"]
+    t1n = metrics["exp1"]["noRev"]["tiempo"]
 
     # score
     score -= abs(m1 - 98) * 10
@@ -1814,11 +1815,18 @@ def calculoScore(metrics):
 
     m1r = metrics["exp1"]["rev"]["coincidenciaRev"]
     s1r = metrics["exp1"]["rev"]["skipsRev"]
+    t1r = metrics["exp1"]["rev"]["tiempo"]
 
     # mismas reglas por ahora
 
     score -= abs(m1r - 2) * 10
     score -= s1r * 20
+
+
+    #comparacion tiempos
+
+    if t1r < t1n:
+        score -= 500
 
     # ======================
     # EXPERIMENTO 2
