@@ -1899,6 +1899,67 @@ def objective(trial):
 
     if metrics == -10000:
         return -10000
+    
+
+    trial.set_user_attr(
+        "exp1_noRev_coincidencia",
+        metrics["exp1"]["noRev"]["coincidenciaNoRev"]
+    )
+
+    trial.set_user_attr(
+        "exp1_noRev_skips",
+        metrics["exp1"]["noRev"]["skipsNoRev"]
+    )
+
+    trial.set_user_attr(
+        "exp1_noRev_tiempo",
+        metrics["exp1"]["noRev"]["tiempo"]
+    )
+
+    trial.set_user_attr(
+        "exp1_rev_coincidencia",
+        metrics["exp1"]["rev"]["coincidenciaRev"]
+    )
+
+    trial.set_user_attr(
+        "exp1_rev_skips",
+        metrics["exp1"]["rev"]["skipsRev"]
+    )
+
+    trial.set_user_attr(
+        "exp1_rev_tiempo",
+        metrics["exp1"]["rev"]["tiempo"]
+    )
+
+    trial.set_user_attr(
+        "exp2_coincidencia",
+        metrics["exp2"]["coincidencia"]
+    )
+
+    trial.set_user_attr(
+        "exp2_skips",
+        metrics["exp2"]["skips"]
+    )
+
+    trial.set_user_attr(
+        "exp3_coincidencia",
+        metrics["exp3"]["coincidencia"]
+    )
+
+    trial.set_user_attr(
+        "exp3_skipsBuenos",
+        metrics["exp3"]["skipsBuenos"]
+    )
+
+    trial.set_user_attr(
+        "exp3_skipsMalos",
+        metrics["exp3"]["skipsMalos"]
+    )
+
+    trial.set_user_attr(
+        "exp3_skipsRespondidos",
+        metrics["exp3"]["skipsRespondidos"]
+    )
 
     puntaje = calculoScore(metrics)
 
