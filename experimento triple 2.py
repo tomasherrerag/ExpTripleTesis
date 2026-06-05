@@ -1187,7 +1187,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
     #bloque guardado ruidos iniciales
 
-    Input_neuronsRuidoOriginal = Input_neurons.noise
+    #Input_neuronsRuidoOriginal = Input_neurons.noise
     StrD1_caudate0RuidoOriginal = StrD1_caudate0.noise
     StrD1_caudate1RuidoOriginal = StrD1_caudate1.noise
     StrD2_caudate0RuidoOriginal = StrD2_caudate0.noise
@@ -1198,7 +1198,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
     SNr_caudateRuidoOriginal = SNr_caudate.noise
     VA_caudateRuidoOriginal = VA_caudate.noise
     ObjectivesRuidoOriginal = Objectives.noise
-    Input_neurons_tonesRuidoOriginal = Input_neurons_tones.noise
+    #Input_neurons_tonesRuidoOriginal = Input_neurons_tones.noise
     StrD1_putamenRuidoOriginal = StrD1_putamen.noise
     StrD2_putamenRuidoOriginal = StrD2_putamen.noise
     GPe_putamenRuidoOriginal = GPe_putamen.noise
@@ -1208,7 +1208,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
     PMRuidoOriginal = PM.noise
 
     #ruido ciclo aprendizaje
-    Input_neuronsRuidoModificado = Input_neurons.noise * max(ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje)
+    #Input_neuronsRuidoModificado = Input_neurons.noise * max(ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje)
     
     StrD1_caudate0RuidoModificado = StrD1_caudate0.noise * ruidoDirectaAprendizaje
     StrD1_caudate1RuidoModificado = StrD1_caudate1.noise * ruidoDirectaAprendizaje
@@ -1226,7 +1226,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
     #ruido ciclo Reacción
 
-    Input_neurons_tonesRuidoModificado = Input_neurons_tones.noise * max(ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion)
+    #Input_neurons_tonesRuidoModificado = Input_neurons_tones.noise * max(ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion)
 
     StrD1_putamenRuidoModificado = StrD1_putamen.noise * ruidoDirectaReaccion
 
@@ -1252,15 +1252,15 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
     ITStrD2_caudate1.tau = ITStrD2_caudate1.tau * tauIndirectaAprendizaje
     StrD2GPe_caudate0.tau = StrD2GPe_caudate0.tau * tauIndirectaAprendizaje
     StrD2GPe_caudate1.tau = StrD2GPe_caudate1.tau * tauIndirectaAprendizaje
-    GPeSNr_caudate.tau = GPeSNr_caudate.tau * tauIndirectaAprendizaje
+    #GPeSNr_caudate.tau = GPeSNr_caudate.tau * tauIndirectaAprendizaje
 
     ITSTN_caudate0.tau = ITSTN_caudate0.tau * tauHiperdirectaAprendizaje
     ITSTN_caudate1.tau = ITSTN_caudate1.tau * tauHiperdirectaAprendizaje
     STNSNr_caudate0.tau = STNSNr_caudate0.tau * tauHiperdirectaAprendizaje
     STNSTN_caudate1.tau = STNSNr_caudate1.tau * tauHiperdirectaAprendizaje
 
-    SNrVA_caudate.tau = SNrVA_caudate.tau * max(tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje)
-    VAObj_caudate.tau = VAObj_caudate.tau * max(tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje)
+    #SNrVA_caudate.tau = SNrVA_caudate.tau * max(tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje)
+    #VAObj_caudate.tau = VAObj_caudate.tau * max(tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje)
 
     #Tau Ciclo Reacción
 
@@ -1269,32 +1269,32 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
     TonesStrD2_putamen.tau = TonesStrD2_putamen.tau * tauIndirectaReaccion
     StrD2GPe_putamen.tau = StrD2GPe_putamen.tau * tauIndirectaReaccion
-    GPeSNr_putamen.tau = GPeSNr_putamen.tau * tauIndirectaReaccion
+    #GPeSNr_putamen.tau = GPeSNr_putamen.tau * tauIndirectaReaccion
 
     TonesSTN_putamen.tau = TonesSTN_putamen.tau * tauHiperdirectaReaccion
     STNSNr_putamen.tau = STNSNr_putamen.tau * tauHiperdirectaReaccion
 
-    SNrVA_putamen.tau = SNrVA_putamen.tau * max(tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion)
-    VAPM_putamen.tau = VAPM_putamen.tau * max(tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion)
+    #SNrVA_putamen.tau = SNrVA_putamen.tau * max(tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion)
+    #VAPM_putamen.tau = VAPM_putamen.tau * max(tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion)
 
     #modificación Dopamina ciclo aprendizaje
 
-    SNcStrD1_caud0.connect_all_to_all(weights=dopaAprendizaje)
-    SNcStrD1_caud1.connect_all_to_all(weights=dopaAprendizaje)
-    SNcStrD2_caud0.connect_all_to_all(weights=dopaAprendizaje)
-    SNcStrD2_caud1.connect_all_to_all(weights=dopaAprendizaje)
-    SNcSTN_caud0.connect_all_to_all(weights=dopaAprendizaje)
-    SNcSTN_caud1.connect_all_to_all(weights=dopaAprendizaje)
-    SNcSNr_caud.connect_all_to_all(weights=dopaAprendizaje)
-    SNcGPe_caud.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD1_caud1.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD2_caud0.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD1_caud0.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD2_caud1.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcSTN_caud0.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcSTN_caud1.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcSNr_caud.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcGPe_caud.connect_all_to_all(weights=dopaAprendizaje)
 
     #modificación Dopamina ciclo reacción
 
-    SNcStrD1_put.connect_all_to_all(weights=dopaReaccion)
-    SNcStrD2_put.connect_all_to_all(weights=dopaReaccion)
-    SNcSTN_put.connect_all_to_all(weights=dopaReaccion)
-    SNcSNr_put.connect_all_to_all(weights=dopaReaccion)
-    SNcGPe_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcStrD1_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcStrD2_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcSTN_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcSNr_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcGPe_put.connect_all_to_all(weights=dopaReaccion)
 
 
     compile()
@@ -1343,7 +1343,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
 
         # implementacion reseteo ruido
-        Input_neurons.noise = Input_neuronsRuidoOriginal
+        #Input_neurons.noise = Input_neuronsRuidoOriginal
         StrD1_caudate0.noise = StrD1_caudate0RuidoOriginal
         StrD1_caudate1.noise = StrD1_caudate1RuidoOriginal
         StrD2_caudate0.noise = StrD2_caudate0RuidoOriginal
@@ -1354,7 +1354,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoOriginal
         VA_caudate.noise = VA_caudateRuidoOriginal
         Objectives.noise = ObjectivesRuidoOriginal
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
         StrD1_putamen.noise = StrD1_putamenRuidoOriginal
         StrD2_putamen.noise = StrD2_putamenRuidoOriginal
         GPe_putamen.noise = GPe_putamenRuidoOriginal
@@ -1464,7 +1464,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
 
         # implementacion reseteo ruido
-        Input_neurons.noise = Input_neuronsRuidoOriginal
+        #Input_neurons.noise = Input_neuronsRuidoOriginal
         StrD1_caudate0.noise = StrD1_caudate0RuidoOriginal
         StrD1_caudate1.noise = StrD1_caudate1RuidoOriginal
         StrD2_caudate0.noise = StrD2_caudate0RuidoOriginal
@@ -1475,7 +1475,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoOriginal
         VA_caudate.noise = VA_caudateRuidoOriginal
         Objectives.noise = ObjectivesRuidoOriginal
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
         StrD1_putamen.noise = StrD1_putamenRuidoOriginal
         StrD2_putamen.noise = StrD2_putamenRuidoOriginal
         GPe_putamen.noise = GPe_putamenRuidoOriginal
@@ -1494,7 +1494,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
             weight_trial+=10
 
         # reimplementacion ruido
-        Input_neurons.noise = Input_neuronsRuidoModificado
+        #Input_neurons.noise = Input_neuronsRuidoModificado
         StrD1_caudate0.noise = StrD1_caudate0RuidoModificado
         StrD1_caudate1.noise = StrD1_caudate1RuidoModificado
         StrD2_caudate0.noise = StrD2_caudate0RuidoModificado
@@ -1505,7 +1505,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoModificado
         VA_caudate.noise = VA_caudateRuidoModificado
         Objectives.noise = ObjectivesRuidoModificado
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
         StrD1_putamen.noise = StrD1_putamenRuidoModificado
         StrD2_putamen.noise = StrD2_putamenRuidoModificado
         GPe_putamen.noise = GPe_putamenRuidoModificado
@@ -1620,7 +1620,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
 
         # implementacion reseteo ruido
-        Input_neurons.noise = Input_neuronsRuidoOriginal
+        #Input_neurons.noise = Input_neuronsRuidoOriginal
         StrD1_caudate0.noise = StrD1_caudate0RuidoOriginal
         StrD1_caudate1.noise = StrD1_caudate1RuidoOriginal
         StrD2_caudate0.noise = StrD2_caudate0RuidoOriginal
@@ -1631,7 +1631,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoOriginal
         VA_caudate.noise = VA_caudateRuidoOriginal
         Objectives.noise = ObjectivesRuidoOriginal
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
         StrD1_putamen.noise = StrD1_putamenRuidoOriginal
         StrD2_putamen.noise = StrD2_putamenRuidoOriginal
         GPe_putamen.noise = GPe_putamenRuidoOriginal
@@ -1650,7 +1650,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
             weight_trial+=10
         
         # reimplementacion ruido
-        Input_neurons.noise = Input_neuronsRuidoModificado
+        #Input_neurons.noise = Input_neuronsRuidoModificado
         StrD1_caudate0.noise = StrD1_caudate0RuidoModificado
         StrD1_caudate1.noise = StrD1_caudate1RuidoModificado
         StrD2_caudate0.noise = StrD2_caudate0RuidoModificado
@@ -1661,7 +1661,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoModificado
         VA_caudate.noise = VA_caudateRuidoModificado
         Objectives.noise = ObjectivesRuidoModificado
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
         StrD1_putamen.noise = StrD1_putamenRuidoModificado
         StrD2_putamen.noise = StrD2_putamenRuidoModificado
         GPe_putamen.noise = GPe_putamenRuidoModificado
@@ -1766,7 +1766,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
 
         # implementacion reseteo ruido
-        Input_neurons.noise = Input_neuronsRuidoOriginal
+        #Input_neurons.noise = Input_neuronsRuidoOriginal
         StrD1_caudate0.noise = StrD1_caudate0RuidoOriginal
         StrD1_caudate1.noise = StrD1_caudate1RuidoOriginal
         StrD2_caudate0.noise = StrD2_caudate0RuidoOriginal
@@ -1777,7 +1777,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoOriginal
         VA_caudate.noise = VA_caudateRuidoOriginal
         Objectives.noise = ObjectivesRuidoOriginal
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
         StrD1_putamen.noise = StrD1_putamenRuidoOriginal
         StrD2_putamen.noise = StrD2_putamenRuidoOriginal
         GPe_putamen.noise = GPe_putamenRuidoOriginal
@@ -1798,7 +1798,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         
 
         # reimplementacion ruido
-        Input_neurons.noise = Input_neuronsRuidoModificado
+        #Input_neurons.noise = Input_neuronsRuidoModificado
         StrD1_caudate0.noise = StrD1_caudate0RuidoModificado
         StrD1_caudate1.noise = StrD1_caudate1RuidoModificado
         StrD2_caudate0.noise = StrD2_caudate0RuidoModificado
@@ -1809,7 +1809,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoModificado
         VA_caudate.noise = VA_caudateRuidoModificado
         Objectives.noise = ObjectivesRuidoModificado
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
         StrD1_putamen.noise = StrD1_putamenRuidoModificado
         StrD2_putamen.noise = StrD2_putamenRuidoModificado
         GPe_putamen.noise = GPe_putamenRuidoModificado
@@ -1929,7 +1929,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
 
         # implementacion reseteo ruido
-        Input_neurons.noise = Input_neuronsRuidoOriginal
+        #Input_neurons.noise = Input_neuronsRuidoOriginal
         StrD1_caudate0.noise = StrD1_caudate0RuidoOriginal
         StrD1_caudate1.noise = StrD1_caudate1RuidoOriginal
         StrD2_caudate0.noise = StrD2_caudate0RuidoOriginal
@@ -1940,7 +1940,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoOriginal
         VA_caudate.noise = VA_caudateRuidoOriginal
         Objectives.noise = ObjectivesRuidoOriginal
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoOriginal
         StrD1_putamen.noise = StrD1_putamenRuidoOriginal
         StrD2_putamen.noise = StrD2_putamenRuidoOriginal
         GPe_putamen.noise = GPe_putamenRuidoOriginal
@@ -1959,7 +1959,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
             weight_trial+=10
 
         # reimplementacion ruido
-        Input_neurons.noise = Input_neuronsRuidoModificado
+        #Input_neurons.noise = Input_neuronsRuidoModificado
         StrD1_caudate0.noise = StrD1_caudate0RuidoModificado
         StrD1_caudate1.noise = StrD1_caudate1RuidoModificado
         StrD2_caudate0.noise = StrD2_caudate0RuidoModificado
@@ -1970,7 +1970,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
         SNr_caudate.noise = SNr_caudateRuidoModificado
         VA_caudate.noise = VA_caudateRuidoModificado
         Objectives.noise = ObjectivesRuidoModificado
-        Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
+        #Input_neurons_tones.noise = Input_neurons_tonesRuidoModificado
         StrD1_putamen.noise = StrD1_putamenRuidoModificado
         StrD2_putamen.noise = StrD2_putamenRuidoModificado
         GPe_putamen.noise = GPe_putamenRuidoModificado
@@ -2087,7 +2087,7 @@ def calculoScore(metrics):
     s2 = metrics["exp2"]["skips"]
 
     # objetivo 54 (asumo % *100)
-    score += (abs(m2 - 54)) **2
+    score = (abs(m2 - 54)) **2
     score += s2 ** 2
 
 
@@ -2192,7 +2192,7 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=1000)
+    study.optimize(objective, n_trials=1500)
 
     print(study.best_value)
     print(study.best_params)
