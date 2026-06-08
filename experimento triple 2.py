@@ -2192,7 +2192,7 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=20)
+    study.optimize(objective, n_trials=50, n_jobs=8)
 
     print(study.best_value)
     print(study.best_params)
