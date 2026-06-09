@@ -7,18 +7,10 @@ import statistics
 import optuna
 import pandas as pd 
 
-def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, dopaAprendizaje, dopaReaccion):
-    
+
+
+def crearSimulacion(dopaAprendizaje, dopaReaccion):
     clear()
-
-    #Organización de carpetas
-    #creación carpeta de salidas
-    output_dir = os.path.join(os.getcwd(), "salidas")
-    os.makedirs(output_dir, exist_ok=True)
-
-    #Creación de carpetas para archivos sin uso
-    unused_dir = os.path.join(output_dir, "Sin uso")
-    os.makedirs(unused_dir, exist_ok=True)
 
 
 
@@ -1078,19 +1070,19 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
     #Reward system
     # A QUE CORRESPONDE EL REWARD SYSTEM? SNc?
     SNcStrD1_put = Projection(pre=SNc_put,post=StrD1_putamen,target='dopa')
-    SNcStrD1_put.connect_all_to_all(weights=1.0)
+    SNcStrD1_put.connect_all_to_all(weights=dopaReaccion)
 
     SNcStrD2_put = Projection(pre=SNc_put,post=StrD2_putamen,target='dopa')
-    SNcStrD2_put.connect_all_to_all(weights=1.0)
+    SNcStrD2_put.connect_all_to_all(weights=dopaReaccion)
 
     SNcSNr_put = Projection(pre=SNc_put,post=SNr_putamen,target='dopa')
-    SNcSNr_put.connect_all_to_all(weights=1.0)
+    SNcSNr_put.connect_all_to_all(weights=dopaReaccion)
 
     SNcSTN_put = Projection(pre=SNc_put,post=STN_putamen,target='dopa')
-    SNcSTN_put.connect_all_to_all(weights=1.0)
+    SNcSTN_put.connect_all_to_all(weights=dopaReaccion)
 
     SNcGPe_put = Projection(pre=SNc_put,post=GPe_putamen,target='dopa')
-    SNcGPe_put.connect_all_to_all(weights=1.0)
+    SNcGPe_put.connect_all_to_all(weights=dopaReaccion)
 
 
     #### fijarse aqui ####
@@ -1106,26 +1098,26 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
     StrD1SNc_put.baseline_dopa = 0.1
 
     SNcStrD1_caud0 = Projection(pre=SNc_caud[0],post=StrD1_caudate0,target='dopa')
-    SNcStrD1_caud0.connect_all_to_all(weights=1.0)
+    SNcStrD1_caud0.connect_all_to_all(weights=dopaAprendizaje)
     SNcStrD1_caud1 = Projection(pre=SNc_caud[1],post=StrD1_caudate1,target='dopa')
-    SNcStrD1_caud1.connect_all_to_all(weights=1.0)
+    SNcStrD1_caud1.connect_all_to_all(weights=dopaAprendizaje)
 
     SNcStrD2_caud0 = Projection(pre=SNc_caud[0],post=StrD2_caudate0,target='dopa')
-    SNcStrD2_caud0.connect_all_to_all(weights=1.0)
+    SNcStrD2_caud0.connect_all_to_all(weights=dopaAprendizaje)
     SNcStrD2_caud1 = Projection(pre=SNc_caud[1],post=StrD2_caudate1,target='dopa')
-    SNcStrD2_caud1.connect_all_to_all(weights=1.0)
+    SNcStrD2_caud1.connect_all_to_all(weights=dopaAprendizaje)
 
 
     SNcSNr_caud = Projection(pre=SNc_caud,post=SNr_caudate,target='dopa')
-    SNcSNr_caud.connect_all_to_all(weights=1.0)
+    SNcSNr_caud.connect_all_to_all(weights=dopaAprendizaje)
 
     SNcSTN_caud0 = Projection(pre=SNc_caud[0],post=STN_caudate0,target='dopa')
-    SNcSTN_caud0.connect_all_to_all(weights=1.0)
+    SNcSTN_caud0.connect_all_to_all(weights=dopaAprendizaje)
     SNcSTN_caud1 = Projection(pre=SNc_caud[1],post=STN_caudate1,target='dopa')
-    SNcSTN_caud1.connect_all_to_all(weights=1.0)
+    SNcSTN_caud1.connect_all_to_all(weights=dopaAprendizaje)
 
     SNcGPe_caud = Projection(pre=SNc_caud,post=GPe_caudate,target='dopa')
-    SNcGPe_caud.connect_all_to_all(weights=1.0)
+    SNcGPe_caud.connect_all_to_all(weights=dopaAprendizaje)
 
     PPTNSNc = Projection(pre=PPTN,post=SNc_caud,target='exc')
     PPTNSNc.connect_one_to_one(weights=1.0)
@@ -1279,29 +1271,29 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
     #modificación Dopamina ciclo aprendizaje
 
-    SNcStrD1_caud1.connect_all_to_all(weights=dopaAprendizaje)
-    SNcStrD2_caud0.connect_all_to_all(weights=dopaAprendizaje)
-    SNcStrD1_caud0.connect_all_to_all(weights=dopaAprendizaje)
-    SNcStrD2_caud1.connect_all_to_all(weights=dopaAprendizaje)
-    SNcSTN_caud0.connect_all_to_all(weights=dopaAprendizaje)
-    SNcSTN_caud1.connect_all_to_all(weights=dopaAprendizaje)
-    SNcSNr_caud.connect_all_to_all(weights=dopaAprendizaje)
-    SNcGPe_caud.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD1_caud1.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD2_caud0.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD1_caud0.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcStrD2_caud1.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcSTN_caud0.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcSTN_caud1.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcSNr_caud.connect_all_to_all(weights=dopaAprendizaje)
+#    SNcGPe_caud.connect_all_to_all(weights=dopaAprendizaje)
 
     #modificación Dopamina ciclo reacción
 
-    SNcStrD1_put.connect_all_to_all(weights=dopaReaccion)
-    SNcStrD2_put.connect_all_to_all(weights=dopaReaccion)
-    SNcSTN_put.connect_all_to_all(weights=dopaReaccion)
-    SNcSNr_put.connect_all_to_all(weights=dopaReaccion)
-    SNcGPe_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcStrD1_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcStrD2_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcSTN_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcSNr_put.connect_all_to_all(weights=dopaReaccion)
+#    SNcGPe_put.connect_all_to_all(weights=dopaReaccion)
 
 
     compile()
 
 
 
-    
+def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion):    
     stim = 0
     trial_stim = [0,0]
 
@@ -1704,7 +1696,7 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
             response = PM.r
             if np.any(response>= umbralRespuesta):
                 listaTiemposGlobal1Rev.append(t)
-                tiemposNoRev.append(t)
+                tiemposRev.append(t)
                 responded = True    
                 break      
             
@@ -1735,21 +1727,25 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
             action = 2
             
             
-        if trial == 400:
-            promedioTiemposNoRev = (
-                statistics.mean(tiemposNoRev)
-                if tiemposNoRev
-                else None
-            )
-            promedioTiemposRev = (
-                statistics.mean(tiemposRev)
-                if tiemposRev
-                else None
-            )
+            
 
         pass
     
+    promedioTiemposNoRev = (
+        statistics.mean(tiemposNoRev)
+        if tiemposNoRev
+        else 0
+    )
+    promedioTiemposRev = (
+        statistics.mean(tiemposRev)
+        if tiemposRev
+        else 0
+    )
+    
 ############################################################################## FIN EXPERIMENTO 1
+
+
+    
 
 ############################################################################## BLOQUE CONTINUE?
 
@@ -2149,11 +2145,9 @@ def objective(trial):
     tauDirectaReaccion = trial.suggest_float("tauDirectaReaccion", 0.8, 1.2)
     tauIndirectaReaccion = trial.suggest_float("tauIndirectaReaccion", 0.8, 1.2)
     tauHiperdirectaReaccion = trial.suggest_float("tauHiperdirectaReaccion", 0.8, 1.2)
-    dopaAprendizaje = 0.8
-    dopaReaccion = 0.8
     
 
-    metrics = simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, dopaAprendizaje, dopaReaccion)
+    metrics = simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion)
  
     
     
@@ -2231,7 +2225,9 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=1500)
+    crearSimulacion(0.8, 0.8)
+
+    study.optimize(objective, n_trials=10)
 
     print(study.best_value)
     print(study.best_params)

@@ -1279,22 +1279,22 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
 
     #modificación Dopamina ciclo aprendizaje
 
-#    SNcStrD1_caud1.connect_all_to_all(weights=dopaAprendizaje)
-#    SNcStrD2_caud0.connect_all_to_all(weights=dopaAprendizaje)
-#    SNcStrD1_caud0.connect_all_to_all(weights=dopaAprendizaje)
-#    SNcStrD2_caud1.connect_all_to_all(weights=dopaAprendizaje)
-#    SNcSTN_caud0.connect_all_to_all(weights=dopaAprendizaje)
-#    SNcSTN_caud1.connect_all_to_all(weights=dopaAprendizaje)
-#    SNcSNr_caud.connect_all_to_all(weights=dopaAprendizaje)
-#    SNcGPe_caud.connect_all_to_all(weights=dopaAprendizaje)
+    SNcStrD2_caud0.connect_all_to_all(weights=dopaAprendizaje)
+    SNcStrD1_caud0.connect_all_to_all(weights=dopaAprendizaje)
+    SNcStrD1_caud1.connect_all_to_all(weights=dopaAprendizaje)
+    SNcStrD2_caud1.connect_all_to_all(weights=dopaAprendizaje)
+    SNcSTN_caud0.connect_all_to_all(weights=dopaAprendizaje)
+    SNcSTN_caud1.connect_all_to_all(weights=dopaAprendizaje)
+    SNcSNr_caud.connect_all_to_all(weights=dopaAprendizaje)
+    SNcGPe_caud.connect_all_to_all(weights=dopaAprendizaje)
 
     #modificación Dopamina ciclo reacción
 
-#    SNcStrD1_put.connect_all_to_all(weights=dopaReaccion)
-#    SNcStrD2_put.connect_all_to_all(weights=dopaReaccion)
-#    SNcSTN_put.connect_all_to_all(weights=dopaReaccion)
-#    SNcSNr_put.connect_all_to_all(weights=dopaReaccion)
-#    SNcGPe_put.connect_all_to_all(weights=dopaReaccion)
+    SNcStrD1_put.connect_all_to_all(weights=dopaReaccion)
+    SNcStrD2_put.connect_all_to_all(weights=dopaReaccion)
+    SNcSTN_put.connect_all_to_all(weights=dopaReaccion)
+    SNcSNr_put.connect_all_to_all(weights=dopaReaccion)
+    SNcGPe_put.connect_all_to_all(weights=dopaReaccion)
 
 
     compile()
@@ -1885,22 +1885,21 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
             listaTiemposGlobal1Rev.append(tiempoTrial)
             action = 2
             
-            
-        if trial == 400:
-            promedioTiemposNoRev = (
-                statistics.mean(tiemposNoRev)
-                if tiemposNoRev
-                else None
-            )
-            promedioTiemposRev = (
-                statistics.mean(tiemposRev)
-                if tiemposRev
-                else None
-            )
 
         pass
     
-
+    promedioTiemposNoRev = (
+        statistics.mean(tiemposNoRev)
+        if tiemposNoRev
+        else 0
+    )
+    promedioTiemposRev = (
+        statistics.mean(tiemposRev)
+        if tiemposRev
+        else 0
+    )
+    
+#########################################################################################
       
                 
 
@@ -2110,8 +2109,8 @@ def objective(trial):
     tauDirectaReaccion = trial.suggest_float("tauDirectaReaccion", 0.8, 1.2)
     tauIndirectaReaccion = trial.suggest_float("tauIndirectaReaccion", 0.8, 1.2)
     tauHiperdirectaReaccion = trial.suggest_float("tauHiperdirectaReaccion", 0.8, 1.2)
-    dopaAprendizaje = trial.suggest_float("dopaAprendizaje", 0.8, 1.2)
-    dopaReaccion = trial.suggest_float("dopaReaccion", 0.8, 1.2)
+    dopaAprendizaje = 0.8
+    dopaReaccion = 0.8
     
 
     metrics = simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, dopaAprendizaje, dopaReaccion)
@@ -2192,7 +2191,7 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=50, n_jobs=8)
+    study.optimize(objective, n_trials=500)
 
     print(study.best_value)
     print(study.best_params)

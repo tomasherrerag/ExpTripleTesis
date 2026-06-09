@@ -1918,20 +1918,19 @@ def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaA
             listaTiemposGlobal1Rev.append(tiempoTrial)
             action = 2
             
-            
-        if trial == 400:
-            promedioTiemposNoRev = (
-                statistics.mean(tiemposNoRev)
-                if tiemposNoRev
-                else None
-            )
-            promedioTiemposRev = (
-                statistics.mean(tiemposRev)
-                if tiemposRev
-                else None
-            )
 
         pass
+    
+    promedioTiemposNoRev = (
+        statistics.mean(tiemposNoRev)
+        if tiemposNoRev
+        else 0
+    )
+    promedioTiemposRev = (
+        statistics.mean(tiemposRev)
+        if tiemposRev
+        else 0
+    )
     
 ############################################################################## FIN EXPERIMENTO 1
 
@@ -2219,7 +2218,7 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=1500)
+    study.optimize(objective, n_trials=500)
 
     print(study.best_value)
     print(study.best_params)
