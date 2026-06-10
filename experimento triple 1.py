@@ -9,7 +9,8 @@ import pandas as pd
 
 
 
-def crearSimulacion(dopaAprendizaje, dopaReaccion):
+
+def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, dopaAprendizaje, dopaReaccion):
     clear()
 
 
@@ -1293,7 +1294,6 @@ def crearSimulacion(dopaAprendizaje, dopaReaccion):
 
 
 
-def simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion):    
     stim = 0
     trial_stim = [0,0]
 
@@ -2147,7 +2147,7 @@ def objective(trial):
     tauHiperdirectaReaccion = trial.suggest_float("tauHiperdirectaReaccion", 0.8, 1.2)
     
 
-    metrics = simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion)
+    metrics = simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, 0.8, 0.8)
  
     
     
@@ -2225,9 +2225,7 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    crearSimulacion(0.8, 0.8)
-
-    study.optimize(objective, n_trials=10)
+    study.optimize(objective, n_trials=1300)
 
     print(study.best_value)
     print(study.best_params)
