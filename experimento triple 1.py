@@ -2115,6 +2115,7 @@ def calculoScore(metrics):
     # mismas reglas por ahora
     
     score = 0
+    scoreTiempos = 0
 
     score += abs(coincidencia1NoRev - 98) ** 2
     score += skips1NoRev ** 2
@@ -2123,11 +2124,11 @@ def calculoScore(metrics):
     score += skips1Rev ** 2
 
     if(tiempo1NoRev > tiempo1Rev):
-        score += (tiempo1NoRev - tiempo1Rev) ** 2
+        scoreTiempos -= (tiempo1NoRev - tiempo1Rev)
     else:
-        score -= (tiempo1Rev - tiempo1NoRev) ** 2
+        scoreTiempos += (tiempo1Rev - tiempo1NoRev)
 
-    return score
+    return score, scoreTiempos
 
 def objective(trial):
 
@@ -2219,13 +2220,13 @@ def objective(trial):
 if __name__ == "__main__":
 
     study = optuna.create_study(
-        direction="minimize",
+        directions=["minimize", "maximize"],
         storage="sqlite:///tesis.db",
         study_name="tesis",
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=1300)
+    study.optimize(objective, n_trials=10)
 
     print(study.best_value)
     print(study.best_params)
