@@ -2148,7 +2148,7 @@ def objective(trial):
     tauHiperdirectaReaccion = trial.suggest_float("tauHiperdirectaReaccion", 0.8, 1.2)
     
 
-    metrics = simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, 0.8, 0.8)
+    metrics = simular(tiempoExp, umbralActividad, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, 1.0, 1.0)
  
     
     
