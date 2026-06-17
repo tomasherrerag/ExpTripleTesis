@@ -2172,7 +2172,7 @@ def objective(trial):
 if __name__ == "__main__":
 
     study = optuna.create_study(
-        direction=["minimize", "minimize"],
+        directions=["minimize", "minimize"],
         storage="sqlite:///tesis.db",
         study_name="tesis",
         load_if_exists=True
