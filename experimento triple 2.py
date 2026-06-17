@@ -1210,69 +1210,69 @@ def simular(tiempoExp, umbralActividad, ruidoInputAprendizaje, ruidoDirectaApren
     #ruido ciclo aprendizaje
     Input_neuronsRuidoModificado = ruidoInputAprendizaje
     
-    StrD1_caudate0RuidoModificado = StrD1_caudate0.noise * ruidoDirectaAprendizaje
-    StrD1_caudate1RuidoModificado = StrD1_caudate1.noise * ruidoDirectaAprendizaje
+    StrD1_caudate0RuidoModificado = ruidoDirectaAprendizaje
+    StrD1_caudate1RuidoModificado = ruidoDirectaAprendizaje
 
-    StrD2_caudate0RuidoModificado = StrD2_caudate0.noise * ruidoIndirectaAprendizaje
-    StrD2_caudate1RuidoModificado = StrD2_caudate1.noise * ruidoIndirectaAprendizaje
-    GPe_caudateRuidoModificado = GPe_caudate.noise * ruidoIndirectaAprendizaje
+    StrD2_caudate0RuidoModificado = ruidoIndirectaAprendizaje
+    StrD2_caudate1RuidoModificado = ruidoIndirectaAprendizaje
+    GPe_caudateRuidoModificado = ruidoIndirectaAprendizaje
 
-    STN_caudate0RuidoModificado = STN_caudate0.noise * ruidoHiperdirectaAprendizaje
-    STN_caudate1RuidoModificado = STN_caudate1.noise * ruidoHiperdirectaAprendizaje
+    STN_caudate0RuidoModificado = ruidoHiperdirectaAprendizaje
+    STN_caudate1RuidoModificado = ruidoHiperdirectaAprendizaje
 
-    SNr_caudateRuidoModificado = SNr_caudate.noise * ruidoEntregaAprendizaje
-    VA_caudateRuidoModificado = VA_caudate.noise * ruidoEntregaAprendizaje
-    ObjectivesRuidoModificado = Objectives.noise * ruidoEntregaAprendizaje
+    SNr_caudateRuidoModificado = ruidoEntregaAprendizaje
+    VA_caudateRuidoModificado = ruidoEntregaAprendizaje
+    ObjectivesRuidoModificado = ruidoEntregaAprendizaje
 
     #ruido ciclo Reacción
 
     Input_neurons_tonesRuidoModificado = ruidoInputReaccion
 
-    StrD1_putamenRuidoModificado = StrD1_putamen.noise * ruidoDirectaReaccion
+    StrD1_putamenRuidoModificado = ruidoDirectaReaccion
 
-    StrD2_putamenRuidoModificado = StrD2_putamen.noise * ruidoIndirectaReaccion
-    GPe_putamenRuidoModificado = GPe_putamen.noise * ruidoIndirectaReaccion
+    StrD2_putamenRuidoModificado = ruidoIndirectaReaccion
+    GPe_putamenRuidoModificado = ruidoIndirectaReaccion
 
-    STN_putamenRuidoModificado = STN_putamen.noise * ruidoHiperdirectaReaccion
+    STN_putamenRuidoModificado = ruidoHiperdirectaReaccion
 
-    SNr_putamenRuidoModificado = SNr_putamen.noise * ruidoEntregaReaccion
-    VA_putamenRuidoModificado = VA_putamen.noise * ruidoEntregaReaccion
-    PMRuidoModificado = PM.noise * ruidoEntregaReaccion
+    SNr_putamenRuidoModificado = ruidoEntregaReaccion
+    VA_putamenRuidoModificado = ruidoEntregaReaccion
+    PMRuidoModificado = ruidoEntregaReaccion
 
     #bloque Modificación de aprendizaje
 
     #Tau Ciclo Aprendizaje
 
-    ITStrD1_caudate0.tau = ITStrD1_caudate0.tau * tauDirectaAprendizaje
-    ITStrD1_caudate1.tau = ITStrD1_caudate1.tau * tauDirectaAprendizaje
-    StrD1SNr_caudate0.tau = StrD1SNr_caudate0.tau * tauDirectaAprendizaje
-    StrD1SNr_caudate1.tau = StrD1SNr_caudate1.tau * tauDirectaAprendizaje
+    ITStrD1_caudate0.tau = ITStrD1_caudate0.tau + tauDirectaAprendizaje
+    ITStrD1_caudate1.tau = ITStrD1_caudate1.tau + tauDirectaAprendizaje
+    StrD1SNr_caudate0.tau = StrD1SNr_caudate0.tau + tauDirectaAprendizaje
+    StrD1SNr_caudate1.tau = StrD1SNr_caudate1.tau + tauDirectaAprendizaje
     
-    ITStrD2_caudate0.tau = ITStrD2_caudate0.tau * tauIndirectaAprendizaje
-    ITStrD2_caudate1.tau = ITStrD2_caudate1.tau * tauIndirectaAprendizaje
-    StrD2GPe_caudate0.tau = StrD2GPe_caudate0.tau * tauIndirectaAprendizaje
-    StrD2GPe_caudate1.tau = StrD2GPe_caudate1.tau * tauIndirectaAprendizaje
-    #GPeSNr_caudate.tau = GPeSNr_caudate.tau * tauIndirectaAprendizaje
+    ITStrD2_caudate0.tau = ITStrD2_caudate0.tau + tauIndirectaAprendizaje
+    ITStrD2_caudate1.tau = ITStrD2_caudate1.tau + tauIndirectaAprendizaje
+    StrD2GPe_caudate0.tau = StrD2GPe_caudate0.tau + tauIndirectaAprendizaje
+    StrD2GPe_caudate1.tau = StrD2GPe_caudate1.tau + tauIndirectaAprendizaje
+    #GPeSNr_caudate.tau = GPeSNr_caudate.tau + tauIndirectaAprendizaje
 
-    ITSTN_caudate0.tau = ITSTN_caudate0.tau * tauHiperdirectaAprendizaje
-    ITSTN_caudate1.tau = ITSTN_caudate1.tau * tauHiperdirectaAprendizaje
-    STNSNr_caudate0.tau = STNSNr_caudate0.tau * tauHiperdirectaAprendizaje
-    STNSTN_caudate1.tau = STNSNr_caudate1.tau * tauHiperdirectaAprendizaje
+    ITSTN_caudate0.tau = ITSTN_caudate0.tau + tauHiperdirectaAprendizaje
+    ITSTN_caudate1.tau = ITSTN_caudate1.tau + tauHiperdirectaAprendizaje
+    STNSNr_caudate0.tau = STNSNr_caudate0.tau + tauHiperdirectaAprendizaje
+    STNSTN_caudate1.tau = STNSNr_caudate1.tau + tauHiperdirectaAprendizaje
 
     SNrVA_caudate.tau = TauPostRutaAprendizaje
     VAObj_caudate.tau = TauPostRutaAprendizaje
 
     #Tau Ciclo Reacción
 
-    TonesStrD1_putamen.tau = TonesStrD1_putamen.tau * tauDirectaReaccion
-    StrD1SNr_putamen.tau = StrD1SNr_putamen.tau * tauDirectaReaccion
+    TonesStrD1_putamen.tau = TonesStrD1_putamen.tau + tauDirectaReaccion
+    StrD1SNr_putamen.tau = StrD1SNr_putamen.tau + tauDirectaReaccion
 
-    TonesStrD2_putamen.tau = TonesStrD2_putamen.tau * tauIndirectaReaccion
-    StrD2GPe_putamen.tau = StrD2GPe_putamen.tau * tauIndirectaReaccion
-    #GPeSNr_putamen.tau = GPeSNr_putamen.tau * tauIndirectaReaccion
+    TonesStrD2_putamen.tau = TonesStrD2_putamen.tau + tauIndirectaReaccion
+    StrD2GPe_putamen.tau = StrD2GPe_putamen.tau + tauIndirectaReaccion
+    #GPeSNr_putamen.tau = GPeSNr_putamen.tau + tauIndirectaReaccion
 
-    TonesSTN_putamen.tau = TonesSTN_putamen.tau * tauHiperdirectaReaccion
-    STNSNr_putamen.tau = STNSNr_putamen.tau * tauHiperdirectaReaccion
+    TonesSTN_putamen.tau = TonesSTN_putamen.tau + tauHiperdirectaReaccion
+    STNSNr_putamen.tau = STNSNr_putamen.tau + tauHiperdirectaReaccion
 
     SNrVA_putamen.tau = TauPostRutaReaccion
     VAPM_putamen.tau = TauPostRutaReaccion
@@ -2069,35 +2069,35 @@ def calculoScore(metrics):
     s2 = metrics["exp2"]["skips"]
 
     # objetivo 54 (asumo % *100)
-    score = (abs(m2 - 54)) **2
-    score += s2 ** 2
+    scoreCoinc = (abs(m2 - 54)) **2
+    scoreSkips = s2 ** 2
 
 
 
-    return score
+    return scoreCoinc, scoreSkips
 
 def objective(trial):
 
     tiempoExp = trial.suggest_int("tiempoExp", 100, 1000)
     umbralActividad = trial.suggest_float("umbralActividad", 0.2, 0.75)
-    ruidoInputAprendizaje = trial.suggest_float("ruidoInputAprendizaje", 0.0, 0.5)
-    ruidoDirectaAprendizaje = trial.suggest_float("ruidoDirectaAprendizaje", 0.8, 1.2)
-    ruidoIndirectaAprendizaje = trial.suggest_float("ruidoIndirectaAprendizaje", 0.8, 1.2)
-    ruidoHiperdirectaAprendizaje = trial.suggest_float("ruidoHiperdirectaAprendizaje", 0.8, 1.2)
-    ruidoEntregaAprendizaje = trial.suggest_float("ruidoEntregaAprendizaje", 0.0, 0.5)
-    ruidoInputReaccion = trial.suggest_float("ruidoInputReaccion", 0.0, 0.5)
-    ruidoDirectaReaccion = trial.suggest_float("ruidoDirectaReaccion", 0.8, 1.2)
-    ruidoIndirectaReaccion = trial.suggest_float("ruidoIndirectaReaccion", 0.8, 1.2)
-    ruidoHiperdirectaReaccion = trial.suggest_float("ruidoHiperdirectaReaccion", 0.8, 1.2)
-    ruidoEntregaReaccion = trial.suggest_float("ruidoEntregaReaccion", 0.0, 0.5)
-    tauDirectaAprendizaje = trial.suggest_float("tauDirectaAprendizaje", 0.8, 1.2)
-    tauIndirectaAprendizaje = trial.suggest_float("tauIndirectaAprendizaje", 0.8, 1.2)
-    tauHiperdirectaAprendizaje = trial.suggest_float("tauHiperdirectaAprendizaje", 0.8, 1.2)
+    ruidoInputAprendizaje = trial.suggest_float("ruidoInputAprendizaje", 0.0, 5.0)
+    ruidoDirectaAprendizaje = trial.suggest_float("ruidoDirectaAprendizaje", 0.0, 5.0)
+    ruidoIndirectaAprendizaje = trial.suggest_float("ruidoIndirectaAprendizaje", 0.0, 5.0)
+    ruidoHiperdirectaAprendizaje = trial.suggest_float("ruidoHiperdirectaAprendizaje", 0.0, 5.0)
+    ruidoEntregaAprendizaje = trial.suggest_float("ruidoEntregaAprendizaje", 0.0, 5.0)
+    ruidoInputReaccion = trial.suggest_float("ruidoInputReaccion", 0.0, 5.0)
+    ruidoDirectaReaccion = trial.suggest_float("ruidoDirectaReaccion", 0.0, 5.0)
+    ruidoIndirectaReaccion = trial.suggest_float("ruidoIndirectaReaccion", 0.0, 5.0)
+    ruidoHiperdirectaReaccion = trial.suggest_float("ruidoHiperdirectaReaccion", 0.0, 5.0)
+    ruidoEntregaReaccion = trial.suggest_float("ruidoEntregaReaccion", 0.0, 2.0)
+    tauDirectaAprendizaje = trial.suggest_int("tauDirectaAprendizaje", 0, 10000)
+    tauIndirectaAprendizaje = trial.suggest_int("tauIndirectaAprendizaje", 0, 10000)
+    tauHiperdirectaAprendizaje = trial.suggest_int("tauHiperdirectaAprendizaje", 0, 10000)
     TauPostRutaAprendizaje = trial.suggest_int("TauPostRutaAprendizaje", 50, 3000)
-    tauDirectaReaccion = trial.suggest_float("tauDirectaReaccion", 0.8, 1.2)
-    tauIndirectaReaccion = trial.suggest_float("tauIndirectaReaccion", 0.8, 1.2)
-    tauHiperdirectaReaccion = trial.suggest_float("tauHiperdirectaReaccion", 0.8, 1.2)
-    TauPostRutaReaccion = trial.suggest_int("TauPostRutaReaccion", 50, 3000)
+    tauDirectaReaccion = trial.suggest_int("tauDirectaReaccion", 0, 10000)
+    tauIndirectaReaccion = trial.suggest_int("tauIndirectaReaccion", 0, 10000)
+    tauHiperdirectaReaccion = trial.suggest_int("tauHiperdirectaReaccion", 0, 10000)
+    TauPostRutaReaccion = trial.suggest_int("TauPostRutaReaccion", 50, 10000)
     
 
     metrics = simular(tiempoExp, umbralActividad, ruidoInputAprendizaje, ruidoDirectaAprendizaje, ruidoIndirectaAprendizaje, ruidoHiperdirectaAprendizaje, ruidoEntregaAprendizaje, ruidoInputReaccion, ruidoDirectaReaccion, ruidoIndirectaReaccion, ruidoHiperdirectaReaccion, ruidoEntregaReaccion, tauDirectaAprendizaje, tauIndirectaAprendizaje, tauHiperdirectaAprendizaje, TauPostRutaAprendizaje, tauDirectaReaccion, tauIndirectaReaccion, tauHiperdirectaReaccion, TauPostRutaReaccion, 1.0, 1.0)
@@ -2172,16 +2172,13 @@ def objective(trial):
 if __name__ == "__main__":
 
     study = optuna.create_study(
-        direction="minimize",
+        direction=["minimize", "minimize"],
         storage="sqlite:///tesis.db",
         study_name="tesis",
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=10000)
-
-    print(study.best_value)
-    print(study.best_params)
+    study.optimize(objective, n_trials=5000)
 
     df = study.trials_dataframe()
     df.to_csv("resultados_optuna.csv", index=False)
