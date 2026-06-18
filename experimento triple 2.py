@@ -2178,7 +2178,7 @@ if __name__ == "__main__":
         load_if_exists=True
     )
 
-    study.optimize(objective, n_trials=5000)
+    study.optimize(objective, n_trials=2000)
 
     df = study.trials_dataframe()
     df.to_csv("resultados_optuna.csv", index=False)
